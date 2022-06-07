@@ -1,14 +1,11 @@
 <script setup>
 const { path } = useRoute();
-const { data } = await useAsyncData("content", () =>
-  queryContent(path).only(["_path", "title"]).find()
-);
+const navigationTree = await fetchContentNavigation(queryContent(path))
 </script>
 <template>
   <main>
-    <div v-for="link of data" :key="link._path">
-      <NuxtLink :to="link._path">{{ link.title }}</NuxtLink>
-    </div>
+
+    <h1>alow</h1>
 
     <pre>
     {{ path }}
@@ -16,7 +13,7 @@ const { data } = await useAsyncData("content", () =>
     >
 
     <pre>
-    {{ data }}
+    {{ navigationTree }}
   </pre
     >
   </main>
